@@ -2,9 +2,9 @@ name: Django CI
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ main ]
   pull_request:
-    branches: [ develop ]
+    branches: [ main ]
 
 jobs:
   build-and-test:
@@ -41,7 +41,7 @@ jobs:
     - name: Install system dependencies (for Pillow)
       run: |
         sudo apt-get update
-        sudo apt-get install -y libjpeg-dev zlib1g-dev
+        sudo apt-get install -y libjpeg-dev zlib1g-dev libpng-dev
 
     - name: Install Python dependencies
       run: |
