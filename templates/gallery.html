@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Gallery{% endblock %}
+{% block content %}
+<h2>Gallery</h2>
+<form method="get">
+    <label for="category">Filter by Category:</label>
+    <select name="category" id="category" onchange="this.form.submit()">
+        <option value="">All Categories</option>
+        {% for category in categories %}
+            <option value="{{ category.id }}" {% if selected_category == category.id %}selected{% endif %}>
+                {{ category.name }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+
+<div class="row mt-4">
+    {% for image in images %}
+    <div class="col-md-4 mb-3">
+        <a href="{% url 'image_detail' image.id %}">
+            <img src="{{ image.image.url }}" class="img-fluid" alt="{{ image.title }}">
+        </a>
+        <p>{{ image.title }}</p>
+    </div>
+    {% empty %}
+    <p>No images found.</p>
+    {% endfor %}
+</div>
+{% endblock %}
