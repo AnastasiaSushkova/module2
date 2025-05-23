@@ -6,7 +6,7 @@ import datetime
 
 class GalleryViewsTest(TestCase):
     def setUp(self):
-        self.category = Category.objects.create(name='Nature')
+        self.category = Category.objects.create(name='Test Category')
         self.image = Image.objects.create(
             title='Test Image',
             image=SimpleUploadedFile(name='test.jpg', content=b'', content_type='image/jpeg'),
@@ -15,7 +15,7 @@ class GalleryViewsTest(TestCase):
         )
         self.image.categories.add(self.category)
 
-    def test_gallery_view_status_code(self):
+    def test_gallery_view(self):
         response = self.client.get(reverse('main'))
         self.assertEqual(response.status_code, 200)
 

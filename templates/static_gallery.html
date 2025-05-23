@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Static Gallery{% endblock %}
+{% block content %}
+<h2>Static Gallery</h2>
+
+<div class="row mt-4">
+    {% for img in images %}
+    <div class="col-md-4 mb-3">
+        <img src="{{ MEDIA_URL }}{{ img }}" class="img-fluid" alt="image">
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

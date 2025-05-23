@@ -17,3 +17,12 @@ def gallery_view(request):
 def image_detail(request, pk):
     image = get_object_or_404(Image, pk=pk)
     return render(request, 'image_detail.html', {'image': image})
+
+def static_gallery_view(request):
+    image_folder = os.path.join(settings.MEDIA_ROOT, 'gallery_images')
+    images = [
+        'gallery_images/' + filename
+        for filename in os.listdir(image_folder)
+        if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.webp'))
+    ]
+    return render(request, 'static_gallery.html', {'images': images})
